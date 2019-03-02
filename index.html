@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ionic Test</title>
+    <script src="https://unpkg.com/@ionic/core@4.0.0/dist/ionic.js"></script>
+</head>
+<body>
+    <div id="container" style="background:#fff">
+        <ion-app>
+            <ion-select interface="popover" value="option1" ok-text="OK" cancel-text="Cancel">
+                <ion-select-option value="option1">option 1</ion-select-option>
+                <ion-select-option value="option2">option 2</ion-select-option>
+            </ion-select>
+        </ion-app>
+    </div>
+    <div>
+        <br/><a id="fullscreen" href="#">full screen</a><br/><br/>
+    </div>
+
+    <script>
+        function toggleFullscreen() {
+            var elem = document.querySelector("#container");
+        
+            if (!document.fullscreenElement) {
+                elem.requestFullscreen().then({}).catch(err => {
+                    alert(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function(event) {
+            var fslink = document.querySelector('#fullscreen');
+            fslink.addEventListener('click', function() {
+                toggleFullscreen();
+            }, false);
+        });
+    </script>
+</body>
+</html>
